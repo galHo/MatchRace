@@ -1,0 +1,20 @@
+<resources>
+
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_user">User</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_event">Event Number</string>
+    <string name="note_new_user">New user?</string>
+    <string name="action_register">Register</string>
+    <string name="action_sign_in"><b>Sign in</b></string>
+    <string name="action_forgot_password">Recover lost password</string>
+    <string name="login_progress_signing_in">Signing in&#8230;</string>
+    <string name="error_invalid_user">This user name have spacing</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_invalid_event">Must be a number</string>
+    <string name="error_incorrect_pass_event">The password or the event is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+
+</resources>

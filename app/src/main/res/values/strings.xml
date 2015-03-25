@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Blind Match Race</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings related to admin activity -->
+    <string name="buoy_number_1">BuoyNum1</string>
+    <string name="buoy_number_2">BuoyNum2</string>
+    <string name="buoy_number_3">BuoyNum3</string>
+    <string name="buoy_number_4">BuoyNum4</string>
+    <string name="buoy_number_5">BuoyNum5</string>
+    <string name="buoy_number_6">BuoyNum6</string>
+    <string name="buoy_number_7">BuoyNum7</string>
+    <string name="buoy_number_8">BuoyNum8</string>
+    <string name="buoy_number_9">BuoyNum9</string>
+    <string name="buoy_number_10">BuoyNum10</string>
+
+</resources>
