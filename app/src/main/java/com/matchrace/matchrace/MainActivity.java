@@ -1,23 +1,5 @@
 package com.matchrace.matchrace;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.matchrace.matchrace.classes.C;
-import com.matchrace.matchrace.classes.GetBuoysTask;
-import com.matchrace.matchrace.classes.GetSailorsTask;
-import com.matchrace.matchrace.classes.SendDataHThread;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.location.Criteria;
@@ -32,6 +14,24 @@ import android.support.v4.app.FragmentManager;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.matchrace.matchrace.classes.C;
+import com.matchrace.matchrace.classes.GetBuoysTask;
+import com.matchrace.matchrace.classes.GetSailorsTask;
+import com.matchrace.matchrace.classes.SendDataHThread;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Main activity. Shows a google map with the sailors, buoys and current position.

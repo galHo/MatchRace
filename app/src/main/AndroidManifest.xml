@@ -42,8 +42,9 @@
         <!-- API Key using my Laptop -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBLRp4IgfFjra9HiCEnrqaHHgOC7akaC_I" />
-<!--try-->
+            android:value="AIzaSyDDFifs3rMZBNhsFPgw39hNA9sSgEi1MYw" />
+<!--try AIzaSyBLRp4IgfFjra9HiCEnrqaHHgOC7akaC_I -->
+
         <activity android:name="com.matchrace.matchrace.MenuActivity" >
         </activity>
     </application>
