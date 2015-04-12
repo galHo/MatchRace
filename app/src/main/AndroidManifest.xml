@@ -43,7 +43,7 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBLRp4IgfFjra9HiCEnrqaHHgOC7akaC_I" />
-
+<!--try-->
         <activity android:name="com.matchrace.matchrace.MenuActivity" >
         </activity>
     </application>
