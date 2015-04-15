@@ -29,7 +29,7 @@ public class C {
 	public static final String PREFS_FULL_USER_NAME = "full_user_name";
 
 
-	// DB constants.
+	// DB constants1.
 	//public static final String URL_INSERT_CLIENT = "http://kcg-lab.info/map-tracking-2d/services/insertClient.php?table=clients";
     public static final String URL_INSERT_CLIENT = "http://matala3.bugs3.com/insertClient.php?table=clients";
 	public static final String URL_CLIENTS_TABLE = "http://kcg-lab.info/map-tracking-2d/services/json-clients.php?table=clients";

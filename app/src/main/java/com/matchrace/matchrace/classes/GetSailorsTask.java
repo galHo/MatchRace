@@ -1,25 +1,25 @@
 package com.matchrace.matchrace.classes;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.matchrace.matchrace.R;
-import com.matchrace.matchrace.modules.JsonReader;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.matchrace.matchrace.R;
+import com.matchrace.matchrace.modules.JsonReader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * AsyncTask for getting the sailor's locations from DB and adding them to the google map.
@@ -99,5 +99,4 @@ public class GetSailorsTask extends AsyncTask<String, Integer, Map<String, LatLn
 			}
 		}
 	}
-
 }
