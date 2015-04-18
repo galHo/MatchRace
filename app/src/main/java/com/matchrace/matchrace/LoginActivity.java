@@ -341,7 +341,7 @@ public class LoginActivity extends Activity {
                     thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
                     thread.setPassword(mPassword);
                     thread.setUser(mUser);
-                    thread.setUrl(C.URL_CLIENTS_TABLE + "&username=" + thread.getUser() + "&pass=" + thread.getPassword());
+                    thread.setUrl(C.URL_USER_TABLE + "&username=" + thread.getUser() + "&pass=" + thread.getPassword());
                     thread.start();
 
                         while (thread.isAlive()){};
@@ -368,7 +368,7 @@ public class LoginActivity extends Activity {
                         intent = new Intent(LoginActivity.this, MenuActivity.class);
                     }
                 }
-                if (NoError ) {
+                if (NoError) {
 
                     if (!mUser.equals("Sailoradmin") && !mUser.equals("SailorAdmin")) {
                         // Updates the SharedPreferences.
@@ -393,8 +393,8 @@ public class LoginActivity extends Activity {
                 }
             }
 			else {
-				etPass.setError(getString(R.string.error_incorrect_pass_event));
-				etEvent.setError(getString(R.string.error_incorrect_pass_event));
+				//etPass.setError(getString(R.string.error_incorrect_pass_event));
+				etEvent.setError(getString(R.string.error_invalid_event));
 				etEvent.requestFocus();
 			}
 		}
