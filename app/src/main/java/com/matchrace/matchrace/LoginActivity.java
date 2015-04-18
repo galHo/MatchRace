@@ -390,6 +390,19 @@ public class LoginActivity extends Activity {
                         etUser.setError(getString(R.string.error_invalid_user));
                     if (Error.equals("Incorrect password"))
                         etPass.setError(getString(R.string.error_incorrect_pass_event));
+                    if (Error.startsWith("Sorry"))
+                        etUser.setError((getString(R.string.error_takend_user)));
+                    if (Error.startsWith("empty")) {
+                        etPass.setError((getString(R.string.error_empty)));
+                        etUser.setError((getString(R.string.error_empty)));
+                    }
+                    if (Error.startsWith("That")) {
+                        etUser.setError((getString(R.string.error_user)));
+                    }
+                    if (Error.startsWith("Incorrect")) {
+                        etPass.setError((getString(R.string.error_pass)));
+                    }
+
                 }
             }
 			else {

@@ -13,8 +13,12 @@
     <string name="login_progress_signing_in">Signing in&#8230;</string>
     <string name="error_invalid_user">This user name have spacing</string>
     <string name="error_invalid_password">This password is too short</string>
-    <string name="error_invalid_event">Must be a number</string>
-    <string name="error_incorrect_pass_event">The password or the event is incorrect</string>
+    <string name="error_invalid_event">The Event Did not created yet</string>
+    <string name="error_incorrect_pass_event">The password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_takend_user">the user is Taken</string>
+    <string name="error_empty">one of the Fields is empty</string>
+    <string name="error_pass">Worng Password</string>
+    <string name="error_user">That user does not exist</string>
 
 </resources>

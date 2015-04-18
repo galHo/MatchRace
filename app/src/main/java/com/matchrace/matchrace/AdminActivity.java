@@ -251,7 +251,7 @@ public class AdminActivity extends FragmentActivity implements LocationListener,
 		thread.setSpeed(speed);
 		thread.setBearing(bearing);
 		thread.setEvent(event);
-        thread.setUrl(C.URL_INSERT_CLIENT + "&Latitude=" + thread.getLat() +"&Longitude=" + thread.getLng() +"&Pressure="+ thread.getSpeed() + "&Azimuth="+ thread.getBearing() + "&Bearing=" + thread.getBearing() + "&Information=" + thread.getFullUserName() + "&Event=" + thread.getEvent());
+        thread.setUrl(C.URL_INSERT_CLIENT +"?table=1&Latitude=" + thread.getLat() +"&Longitude=" + thread.getLng() +"&Pressure="+ thread.getSpeed() + "&Azimuth="+ thread.getBearing() + "&Bearing=" + thread.getBearing() + "&Information=" + thread.getFullUserName() + "&Event=" + thread.getEvent());
 		thread.start();
 
 		// Adds a buoy on the map.
