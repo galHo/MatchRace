@@ -20,11 +20,6 @@
   <component name="ChangeListManager">
     <list id="169cce73-8fed-42ea-8328-a6c9fc46ec76" name="Default" comment="change server adress" />
     <list default="true" id="31037e11-eafc-445d-87a2-b4f3c6f670b8" name="gal" comment="incert DB 1">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/AdminActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/AdminActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/classes/C.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/classes/C.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings_activity_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings_activity_login.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MatchRace.iws" />
@@ -52,8 +47,8 @@
       <file leaf-file-name="LoginActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19685039" vertical-offset="5493" max-vertical-offset="6392">
-              <caret line="381" column="51" selection-start-line="381" selection-start-column="51" selection-end-line="381" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.4980315" vertical-offset="5493" max-vertical-offset="6392">
+              <caret line="390" column="59" selection-start-line="390" selection-start-column="59" selection-end-line="390" selection-end-column="59" />
               <folding>
                 <element signature="e#5068#5108#0" expanded="true" />
                 <element signature="e#5210#5252#0" expanded="true" />
@@ -1971,7 +1966,11 @@
       <created>1429346337111</created>
       <updated>1429346337111</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="incert DB 1">
+      <created>1429375682010</created>
+      <updated>1429375682010</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <option name="trackContextForNewChangelist" value="true" />
     <servers />
   </component>
@@ -2557,8 +2556,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19685039" vertical-offset="5493" max-vertical-offset="6392">
-          <caret line="381" column="51" selection-start-line="381" selection-start-column="51" selection-end-line="381" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.4980315" vertical-offset="5493" max-vertical-offset="6392">
+          <caret line="390" column="59" selection-start-line="390" selection-start-column="59" selection-end-line="390" selection-end-column="59" />
           <folding>
             <element signature="e#5068#5108#0" expanded="true" />
             <element signature="e#5210#5252#0" expanded="true" />
