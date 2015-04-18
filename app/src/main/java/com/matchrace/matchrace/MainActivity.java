@@ -143,7 +143,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			thread.setSpeed(speed);
 			thread.setBearing(bearing);
 			thread.setEvent(event);
-
+            thread.setUrl(C.URL_INSERT_CLIENT + "&Latitude=" + thread.getLat() +"&Longitude=" + thread.getLng() +"&Pressure="+ thread.getSpeed() + "&Azimuth="+ thread.getBearing() + "&Bearing=" + thread.getBearing() + "&Information=" + thread.getFullUserName() + "&Event=" + thread.getEvent());
 			thread.start();
 
 			// AsyncTask for getting the sailor's locations from DB and adding them to the google map.

@@ -31,9 +31,14 @@ public class C {
 
 	// DB constants1.
 	//public static final String URL_INSERT_CLIENT = "http://kcg-lab.info/map-tracking-2d/services/insertClient.php?table=clients";
+//    public static final String URL_CLIENTS_TABLE = "http://kcg-lab.info/map-tracking-2d/services/json-clients.php?table=clients";//USERs Table
+
     public static final String URL_INSERT_CLIENT = "http://matala3.bugs3.com/insertClient.php?table=clients";
-	public static final String URL_CLIENTS_TABLE = "http://kcg-lab.info/map-tracking-2d/services/json-clients.php?table=clients";
-	public static final String URL_HISTORY_TABLE = "http://kcg-lab.info/map-tracking-2d/services/json-clients.php?table=history";
+	public static final String URL_CLIENTS_TABLE = "http://matala3.bugs3.com/Registration.php?table=users";//USERs Table
+    public static final String URL_CLIENTS_LOGIN= "http://matala3.bugs3.com/login.php?table=users";//USERs Table
+    public static final String URL_CLIENTS_EVENT= "http://matala3.bugs3.com/evet.php?table=clients";//USERs Table
+
+    public static final String URL_HISTORY_TABLE = "http://matala3.bugs3.com/json-clients.php?table=history";
 
 	// Data constants.
 	public static final String APP_DIR = Environment.getExternalStorageDirectory().getPath() + "/BlindMatchRace/";

@@ -43,7 +43,13 @@ public class GetSailorsTask extends AsyncTask<String, Integer, Map<String, LatLn
 		this.event = event;
 	}
 
-	protected Map<String, LatLng> doInBackground(String... urls) {
+    /**
+     * The function get String of urls and return a Map with all the loctions
+     * for a specified usename ans event.
+     * * @param urls
+     * @return
+     */
+	protected  Map<String, LatLng> doInBackground(String... urls) {
 		Map<String, LatLng> sailorsLatLng = new HashMap<String, LatLng>();
 		try {
 			JSONObject json = JsonReader.readJsonFromUrl(urls[0]);
@@ -80,7 +86,11 @@ public class GetSailorsTask extends AsyncTask<String, Integer, Map<String, LatLn
 		}
 	}
 
-	protected void onPostExecute(Map<String, LatLng> sailorsLatLng) {
+    /**
+     * geting a new map, deleting all the old markers and adding th new form sailorsLatLng;
+     * @param sailorsLatLng a new map to pot on the showed one.
+     */
+	protected  void onPostExecute(Map<String, LatLng> sailorsLatLng) {
 		if (sailorsLatLng != null) {
 			// Removes from map all previous sailors.
 			if (!sailorMarkers.isEmpty()) {

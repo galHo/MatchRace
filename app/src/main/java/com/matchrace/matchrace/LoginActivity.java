@@ -273,86 +273,125 @@ public class LoginActivity extends Activity {
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			if (mUser.equals("Sailoradmin") || mUser.equals("SailorAdmin")) {
-				adminRequest = true;
-				return mPassword.equals("admin") || mPassword.equals("Admin");
-			}
+            if (mUser.equals("Sailoradmin") || mUser.equals("SailorAdmin")) {
+                adminRequest = true;
+                return mPassword.equals("admin") || mPassword.equals("Admin");
+            }
 
-			if (registerRequest) {
-				return true;
-			}
+            if (registerRequest) {
 
-			String name = "UserLoginTask";
-			try {
-				// Gets the user data from DB and checks if the user's data match.
-				JSONObject json = JsonReader.readJsonFromUrl(C.URL_CLIENTS_TABLE + "&Information=" + mUser + "_" + mPassword + "_" + mEvent);
-				JSONArray jsonArray = json.getJSONArray("positions");
-				if (jsonArray.length() > 0) {
-					JSONObject jsonObj = (JSONObject) jsonArray.get(0);
-					if (jsonObj.getString("event").equals(mEvent))
-						return true;
-				}
-			}
-			catch (JSONException e) {
-				Log.i(name, "JSONException");
-				return false;
-			}
-			catch (IOException e) {
-				Log.i(name, "IOException, Ensure Mobile Data is NOT off");
-				return false;
-			}
+                return true;
+            }
 
-			return false;
-		}
+            String name = "UserLoginTask";
 
+                // Gets the user data from DB and checks if the user's data match.
+                //  JSONObject json = JsonReader.readJsonFromUrl(C.URL_CLIENTS_EVENT + "&Event=" + mEvent);
+//				JSONArray jsonArray = json.getJSONArray("positions");
+//				if (jsonArray.length() > 0) {
+//					JSONObject jsonObj = (JSONObject) jsonArray.get(0);
+//					if (jsonObj.getString("event").equals(mEvent))
+//						return true;
+//				}
+                SendDataHThread thread = new SendDataHThread("IsEvent");
+                thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                thread.setEvent(mEvent);
+                thread.setUrl(C.URL_CLIENTS_EVENT + "&event=" + thread.getEvent());
+                thread.start();
+
+                while (thread.isAlive()) {
+                };
+
+                if (thread.getFinish_Status().equals("OK"))
+                    return true;
+
+//            }
+//			catch (JSONException e) {
+//				Log.i(name, "JSONException");
+//				return false;
+//			}
+//			catch (IOException e) {
+//				Log.i(name, "IOException, Ensure Mobile Data is NOT off");
+//				return false;
+//			}
+
+                return false;
+
+
+        }
 		@Override
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
 			showProgress(false);
-
+            String Error="OK";
+            boolean NoError=false;
+            boolean AdminActivity=false;
 			if (success) {
-				Intent intent;
-				if (adminRequest) {
-					adminRequest = false;
-					intent = new Intent(LoginActivity.this, AdminActivity.class);
-				}
-				else if (registerRequest) {
-					registerRequest = false;
+                Intent intent = null;
+                if (adminRequest) {
+                    adminRequest = false;
+                    AdminActivity=true;
+                    NoError=true;
+                    intent = new Intent(LoginActivity.this, AdminActivity.class);
+                } else if (registerRequest) {
+                    registerRequest = false;
 
-					// HandlerThread for creating a new user in the DB through thread.
-					SendDataHThread thread = new SendDataHThread("CreateNewUser");
-					thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                    // HandlerThread for creating a new user in the DB through thread.
+                    SendDataHThread thread = new SendDataHThread("CreateNewUser");
+                    thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                    thread.setPassword(mPassword);
+                    thread.setUser(mUser);
+                    thread.setUrl(C.URL_CLIENTS_TABLE + "&username=" + thread.getUser() + "&pass=" + thread.getPassword());
+                    thread.start();
 
-					thread.setFullUserName(mUser + "_" + mPassword + "_" + mEvent);
-					thread.setEvent(mEvent);
-					thread.setLat("0");
-					thread.setLng("0");
-					thread.setSpeed("0");
-					thread.setBearing("0");
+                        while (thread.isAlive()){};
 
-					thread.start();
+                    Error = thread.getFinish_Status();
+                    if (Error.equals("OK")) {
+                        NoError = true;
+                        intent = new Intent(LoginActivity.this, MenuActivity.class);
 
-					intent = new Intent(LoginActivity.this, MenuActivity.class);
-				}
-				else {
-					intent = new Intent(LoginActivity.this, MenuActivity.class);
-				}
+                    }
+                    //intent = new Intent(LoginActivity.this, MenuActivity.class);
+                } else {
+                    SendDataHThread thread = new SendDataHThread("login");
+                    thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                    thread.setPassword(mPassword);
+                    thread.setUser(mUser);
+                    thread.setUrl(C.URL_CLIENTS_LOGIN + "&username=" + thread.getUser() + "&pass=" + thread.getPassword());
+                    thread.start();
+                        while (thread.isAlive()){};
 
-				if (!mUser.equals("Sailoradmin") && !mUser.equals("SailorAdmin")) {
-					// Updates the SharedPreferences.
-					SharedPreferences.Editor spEdit = sp.edit();
-					String fullUserName = mUser + "_" + mPassword + "_" + mEvent;
-					spEdit.putString(C.PREFS_FULL_USER_NAME, fullUserName);
-					spEdit.commit();
-				}
+                    Error = thread.getFinish_Status();
+                    if (Error.equals("OK")) {
+                        NoError = true;
+                        intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    }
+                }
+                if (NoError ) {
 
-				intent.putExtra(C.USER_NAME, mUser);
-				intent.putExtra(C.USER_PASS, mPassword);
-				intent.putExtra(C.EVENT_NUM, mEvent);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
-				finish();
-			}
+                    if (!mUser.equals("Sailoradmin") && !mUser.equals("SailorAdmin")) {
+                        // Updates the SharedPreferences.
+                        SharedPreferences.Editor spEdit = sp.edit();
+                        String fullUserName = mUser + "_" + mPassword + "_" + mEvent;
+                        spEdit.putString(C.PREFS_FULL_USER_NAME, fullUserName);
+                        spEdit.commit();
+                    }
+
+                    intent.putExtra(C.USER_NAME, mUser);
+                    intent.putExtra(C.USER_PASS, mPassword);
+                    intent.putExtra(C.EVENT_NUM, mEvent);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    if (Error.equals("That user does not exist"))
+                        etUser.setError(getString(R.string.error_invalid_user));
+                    if (Error.equals("Incorrect password"))
+                        etPass.setError(getString(R.string.error_incorrect_pass_event));
+                }
+            }
 			else {
 				etPass.setError(getString(R.string.error_incorrect_pass_event));
 				etEvent.setError(getString(R.string.error_incorrect_pass_event));
