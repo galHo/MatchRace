@@ -47,8 +47,8 @@
       <file leaf-file-name="LoginActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4980315" vertical-offset="5493" max-vertical-offset="6392">
-              <caret line="390" column="59" selection-start-line="390" selection-start-column="59" selection-end-line="390" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.6653543" vertical-offset="5493" max-vertical-offset="6392">
+              <caret line="395" column="75" selection-start-line="395" selection-start-column="75" selection-end-line="395" selection-end-column="75" />
               <folding>
                 <element signature="e#5068#5108#0" expanded="true" />
                 <element signature="e#5210#5252#0" expanded="true" />
@@ -1970,7 +1970,11 @@
       <created>1429375682010</created>
       <updated>1429375682010</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="incert DB 1">
+      <created>1429376131871</created>
+      <updated>1429376131871</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <option name="trackContextForNewChangelist" value="true" />
     <servers />
   </component>
@@ -2556,8 +2560,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4980315" vertical-offset="5493" max-vertical-offset="6392">
-          <caret line="390" column="59" selection-start-line="390" selection-start-column="59" selection-end-line="390" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.6653543" vertical-offset="5493" max-vertical-offset="6392">
+          <caret line="395" column="75" selection-start-line="395" selection-start-column="75" selection-end-line="395" selection-end-column="75" />
           <folding>
             <element signature="e#5068#5108#0" expanded="true" />
             <element signature="e#5210#5252#0" expanded="true" />
