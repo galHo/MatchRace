@@ -20,7 +20,6 @@
   <component name="ChangeListManager">
     <list id="169cce73-8fed-42ea-8328-a6c9fc46ec76" name="Default" comment="change server adress" />
     <list default="true" id="31037e11-eafc-445d-87a2-b4f3c6f670b8" name="gal" comment="incert DB 1 - upload">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/classes/C.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/matchrace/matchrace/classes/C.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MatchRace.iws" />
@@ -1956,7 +1955,11 @@
       <created>1429378899452</created>
       <updated>1429378899452</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="incert DB 1 - upload">
+      <created>1429473521158</created>
+      <updated>1429473521158</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <option name="trackContextForNewChangelist" value="true" />
     <servers />
   </component>
@@ -2051,6 +2054,9 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
+  </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
