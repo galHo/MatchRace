@@ -1,5 +1,17 @@
 package com.matchrace.matchrace.classes;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.matchrace.matchrace.modules.JsonReader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -10,18 +22,6 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.matchrace.matchrace.modules.JsonReader;
-import com.google.android.gms.maps.model.LatLng;
-
-import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 /**
  * AsyncTask for saving the KML file on SD memory.
@@ -91,7 +91,9 @@ public class SaveKmlTask extends AsyncTask<String, Integer, Map<Long, LatLng>> {
 		}
 		catch (JSONException e) {
 			Log.i(name, "JSONException");
-			return null;
+			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  have to check !!!!   ~~~~~~~~~~~~~~~~~~~~~~~~~
+			//                                this is what make it works
+			return sortedLatLngs;
 		}
 		catch (IOException e) {
 			Log.i(name, "IOException");
