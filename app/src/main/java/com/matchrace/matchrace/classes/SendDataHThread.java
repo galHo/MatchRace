@@ -1,5 +1,8 @@
 package com.matchrace.matchrace.classes;
 
+import android.os.HandlerThread;
+import android.util.Log;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,9 +11,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import android.os.HandlerThread;
-import android.util.Log;
 
 /**
  * HandlerThread for sending the data to DB.
@@ -59,16 +59,16 @@ public class SendDataHThread extends HandlerThread {
 				Log.i(name, "IOException");
 				urlConnection.disconnect();
 			}
-			urlConnection.disconnect();
-		}
-		catch (MalformedURLException e) {
-			Log.i(name, "MalformedURLException");
+
+        } catch (MalformedURLException e) {
+            Log.i(name, "MalformedURLException");
 		}
 		catch (IOException e) {
 			Log.i(name, "IOException");
-		}
-
-	}
+		} finally {
+            urlConnection.disconnect();
+        }
+    }
 
 
 
@@ -104,18 +104,17 @@ public class SendDataHThread extends HandlerThread {
         return this.password;
     }
 
-    public String getUser(){
-        return this.user;
-    }
-
-    public void setUser(String _user){
-        this.user=_user;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public String getUser() {
+        return this.user;
+    }
+
+    public void setUser(String _user) {
+        this.user = _user;
+    }
 
 	public String getLat() {
 		return lat;

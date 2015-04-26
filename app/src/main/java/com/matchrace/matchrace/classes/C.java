@@ -30,9 +30,8 @@ public class C {
 
 
 	// DB constants1.
-	//public static final String URL_INSERT_CLIENT = "http://kcg-lab.info/map-tracking-2d/services/insertClient.php?table=clients";
-//    public static final String URL_CLIENTS_TABLE = "http://kcg-lab.info/map-tracking-2d/services/json-clients.php?table=clients";//USERs Table
-
+    ///http://openweathermap.org/current
+    public static final String WEATHER_API = "http://api.openweathermap.org/data/2.5/weather?";//lat=35&lon=139
     public static final String URL_INSERT_CLIENT = "http://matala3.bugs3.com/insertClient.php";
     public static final String URL_INSERT_HISTORY = "http://matala3.bugs3.com/insertHistory.php";
     public static final String URL_USER_TABLE = "http://matala3.bugs3.com/Registration.php?table=users";

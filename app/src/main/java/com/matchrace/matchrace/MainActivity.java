@@ -29,13 +29,16 @@ import com.matchrace.matchrace.classes.GetBuoysTask;
 import com.matchrace.matchrace.classes.GetSailorsTask;
 import com.matchrace.matchrace.classes.SendDataHThread;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Main activity. Shows a google map with the sailors, buoys and current position.
- * 
+ *
  */
 public class MainActivity extends FragmentActivity implements LocationListener {
 
@@ -45,8 +48,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	private Circle[] buoyRadiuses = new Circle[C.MAX_BUOYS];
 	private MediaPlayer buoyBeep;
 	private boolean disableLocation = false;
-
-	// Views.
+    private String weather_key = "4258babda2c603d4dc31d16ac9058dd8";
+    // Views.
 	private Marker currentPosition;
 	private List<Marker> sailorMarkers = new ArrayList<Marker>();
 	private GoogleMap googleMap;
@@ -125,26 +128,50 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		finish();
 	}
 
-	@Override
-	public void onLocationChanged(Location location) {
+
+    public String[] GetWind(String lat, String lng) {//
+        String w_speed = "0";
+        String w_deg = "0";
+        SendDataHThread thread = new SendDataHThread("GetWind");
+        thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
+        thread.setUrl(C.WEATHER_API + "lat=" + (int) Double.parseDouble(lat) + "&lon=" + (int) Double.parseDouble(lng));
+        thread.start();
+        while (thread.isAlive()) {
+        }
+        String ans = thread.getFinish_Status();
+        try {
+            JSONObject json = new JSONObject(ans);
+            JSONObject data = json.getJSONObject("wind"); // get data object
+            w_speed = data.getString("speed");
+            w_deg = data.getString("deg");// get the name from data.
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String wind[] = {w_speed, w_deg};
+        return wind;
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
 		if (!disableLocation) {
-			// HandlerThread for sending the current location to DB.
-			SendDataHThread thread = new SendDataHThread("SendGPS");
+            // HandlerThread for sending the current location to DB.
+            SendDataHThread thread = new SendDataHThread("SendGPS");
 			thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
 			String lat = new DecimalFormat("##.######").format(location.getLatitude());
 			String lng = new DecimalFormat("##.######").format(location.getLongitude());
 			String speed = "" + location.getSpeed();
 			String bearing = "" + location.getBearing();
-
-			thread.setFullUserName(fullUserName);
+            String[] Wind = GetWind(lat, lng);
+            thread.setFullUserName(fullUserName);
 			thread.setLat(lat);
 			thread.setLng(lng);
 			thread.setSpeed(speed);
 			thread.setBearing(bearing);
 			thread.setEvent(event);
-            thread.setUrl(C.URL_INSERT_HISTORY +"?table=0&Latitude=" + thread.getLat() +"&Longitude=" + thread.getLng() +"&Pressure="+ thread.getSpeed() + "&Azimuth="+ thread.getBearing() + "&Bearing=" + thread.getBearing() + "&Information=" + thread.getFullUserName() + "&Event=" + thread.getEvent());
-			thread.start();
+            thread.setUrl(C.URL_INSERT_HISTORY + "?table=0&Latitude=" + thread.getLat() + "&Longitude=" + thread.getLng() + "&Pressure=" + thread.getSpeed() + "&Azimuth=" + thread.getBearing() + "&Bearing=" + thread.getBearing() + "&Information=" + thread.getFullUserName() + "&Event=" + thread.getEvent() + "&wind_s=" + Wind[0] + "&wind_d=" + Wind[1]);
+            thread.start();
 
 
 			// AsyncTask for getting the sailor's locations from DB and adding them to the google map.
