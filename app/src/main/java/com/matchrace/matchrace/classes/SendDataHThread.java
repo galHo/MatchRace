@@ -14,71 +14,68 @@ import java.net.URL;
 
 /**
  * HandlerThread for sending the data to DB.
- * 
  */
 public class SendDataHThread extends HandlerThread {
 
-	private HttpURLConnection urlConnection;
-	private String lat, lng, speed, bearing, event;
-	private String name, fullUserName,password,user;
+    private HttpURLConnection urlConnection;
+    private String lat, lng, speed, bearing, event;
+    private String name, fullUserName, password, user;
     private URL url;
-    private String Finish_Status="OK";
-	public SendDataHThread(String name) {
-		super(name);
-		this.name = name;
-	}
+    private String Finish_Status = "OK";
 
-	@Override
-	public void run() {
-		httpConnSendData();
-	}
+    public SendDataHThread(String name) {
+        super(name);
+        this.name = name;
+    }
 
-	/**
-	 * Creates the HTTP connection for sending data to DB.
-	 */
-	private void httpConnSendData() {
+    @Override
+    public void run() {
+        httpConnSendData();
+    }
 
-		try {
-		//	URL url = new URL(C.URL_INSERT_CLIENT + "&Latitude=" + lat +"&Longitude=" + lng +"&Pressure="+ speed + "&Azimuth="+ bearing + "&Bearing=" + bearing + "&Information=" + fullUserName + "&Event=" + event);
-				urlConnection = (HttpURLConnection) url.openConnection();
-			try {
-				InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-				BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    /**
+     * Creates the HTTP connection for sending data to DB.
+     */
+    private void httpConnSendData() {
+
+        try {
+            //	URL url = new URL(C.URL_INSERT_CLIENT + "&Latitude=" + lat +"&Longitude=" + lng +"&Pressure="+ speed + "&Azimuth="+ bearing + "&Bearing=" + bearing + "&Information=" + fullUserName + "&Event=" + event);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            try {
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
                 String result = br.readLine();
-				if (!result.startsWith("OK")) { // Something is wrong.
-					Log.i(name, "Not OK!");
-                    Finish_Status=result;
+                if (!result.startsWith("OK")) { // Something is wrong.
+                    Log.i(name, "Not OK!");
+                    Finish_Status = result;
+
+                } else { // Data sent.AD
+                    Log.i(name, "OK!");
 
                 }
-				else { // Data sent.AD
-					Log.i(name, "OK!");
-
-				}
-			}
-			catch (IOException e) {
-				Log.i(name, "IOException");
-				urlConnection.disconnect();
-			}
+            } catch (IOException e) {
+                Log.i(name, "IOException");
+                urlConnection.disconnect();
+            }
 
         } catch (MalformedURLException e) {
             Log.i(name, "MalformedURLException");
-		}
-		catch (IOException e) {
-			Log.i(name, "IOException");
-		} finally {
+        } catch (IOException e) {
+            Log.i(name, "IOException");
+        } finally {
             urlConnection.disconnect();
         }
     }
 
 
+    // Getters and Setters.
 
-	// Getters and Setters.
-
-    public void setUrl(String _url){
+    public void setUrl(String _url) {
         try {
             url = new URL(_url);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             Log.i(name, "IOException");
             urlConnection.disconnect();
         }
@@ -86,21 +83,21 @@ public class SendDataHThread extends HandlerThread {
     }
 
 
-    public String getFinish_Status(){
-        String ans=Finish_Status;
-        Finish_Status="OK";
+    public String getFinish_Status() {
+        String ans = Finish_Status;
+        Finish_Status = "OK";
         return ans;
     }
 
-	public String getFullUserName() {
-		return fullUserName;
-	}
+    public String getFullUserName() {
+        return fullUserName;
+    }
 
-	public void setFullUserName(String fullUserName) {
-		this.fullUserName = fullUserName;
-	}
+    public void setFullUserName(String fullUserName) {
+        this.fullUserName = fullUserName;
+    }
 
-    public String getPassword(){
+    public String getPassword() {
         return this.password;
     }
 
@@ -116,44 +113,44 @@ public class SendDataHThread extends HandlerThread {
         this.user = _user;
     }
 
-	public String getLat() {
-		return lat;
-	}
+    public String getLat() {
+        return lat;
+    }
 
-	public void setLat(String lat) {
-		this.lat = lat;
-	}
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
 
-	public String getLng() {
-		return lng;
-	}
+    public String getLng() {
+        return lng;
+    }
 
-	public void setLng(String lng) {
-		this.lng = lng;
-	}
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
 
-	public String getSpeed() {
-		return speed;
-	}
+    public String getSpeed() {
+        return speed;
+    }
 
-	public void setSpeed(String speed) {
-		this.speed = speed;
-	}
+    public void setSpeed(String speed) {
+        this.speed = speed;
+    }
 
-	public String getBearing() {
-		return bearing;
-	}
+    public String getBearing() {
+        return bearing;
+    }
 
-	public void setBearing(String bearing) {
-		this.bearing = bearing;
-	}
+    public void setBearing(String bearing) {
+        this.bearing = bearing;
+    }
 
-	public String getEvent() {
-		return event;
-	}
+    public String getEvent() {
+        return event;
+    }
 
-	public void setEvent(String event) {
-		this.event = event;
-	}
+    public void setEvent(String event) {
+        this.event = event;
+    }
 
 }

@@ -1,18 +1,5 @@
 package com.matchrace.matchrace;
 
-import java.text.DecimalFormat;
-
-import com.matchrace.matchrace.classes.C;
-import com.matchrace.matchrace.classes.SendDataHThread;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.location.Criteria;
@@ -28,6 +15,19 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.matchrace.matchrace.classes.C;
+import com.matchrace.matchrace.classes.SendDataHThread;
+
+import java.text.DecimalFormat;
 
 /**
  * Administrator activity. Shows a google map with option to add buoys on it.
@@ -251,8 +251,8 @@ public class AdminActivity extends FragmentActivity implements LocationListener,
 		thread.setSpeed(speed);
 		thread.setBearing(bearing);
 		thread.setEvent(event);
-        thread.setUrl(C.URL_INSERT_CLIENT +"?table=1&Latitude=" + thread.getLat() +"&Longitude=" + thread.getLng() +"&Pressure="+ thread.getSpeed() + "&Azimuth="+ thread.getBearing() + "&Bearing=" + thread.getBearing() + "&Information=" + thread.getFullUserName() + "&Event=" + thread.getEvent());
-		thread.start();
+        thread.setUrl(C.URL_INSERT_CLIENT + "?table=1&Latitude=" + thread.getLat() + "&Longitude=" + thread.getLng() + "&Pressure=" + thread.getSpeed() + "&Azimuth=" + thread.getBearing() + "&Bearing=" + thread.getBearing() + "&Information=" + fullBuoyName + "&Event=" + thread.getEvent());
+        thread.start();
 
 		// Adds a buoy on the map.
 		LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
