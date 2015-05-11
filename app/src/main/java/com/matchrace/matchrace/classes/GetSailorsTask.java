@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +51,7 @@ public class GetSailorsTask extends AsyncTask<String, Integer, Map<String, LatLn
      * @return
      */
 	protected  Map<String, LatLng> doInBackground(String... urls) {
+
 		Map<String, LatLng> sailorsLatLng = new HashMap<String, LatLng>();
 		try {
 			JSONObject json = JsonReader.readJsonFromUrl(urls[0]);
@@ -58,8 +60,10 @@ public class GetSailorsTask extends AsyncTask<String, Integer, Map<String, LatLn
 				JSONObject jsonObj = (JSONObject) jsonArray.get(i);
 				if (jsonObj.getString("info").startsWith(C.SAILOR_PREFIX)) {
 					if (jsonObj.getString("event").equals(event)) {
+                        Date time=new Date(Long.parseLong(jsonObj.getString("time"))*1000L);
+                        Date tomorrow = new Date(time.getTime( ) + (1000 * 60 * 60 * 24));
 						String sailorFullName = jsonObj.getString("info");
-                        if (!sailorFullName.equals((fullUserName))) {
+                        if ((!sailorFullName.equals((fullUserName)) && tomorrow.after(new Date()))) {
                             String lat = jsonObj.getString("lat");
                             String lng = jsonObj.getString("lon");
                             if (Double.parseDouble(lat) == 0 || Double.parseDouble(lng) == 0) {
