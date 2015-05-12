@@ -287,21 +287,16 @@ public class LoginActivity extends Activity {
 
                 // Gets the user data from DB and checks if the user's data match.
                 //  JSONObject json = JsonReader.readJsonFromUrl(C.URL_CLIENTS_EVENT + "&Event=" + mEvent);
-//				JSONArray jsonArray = json.getJSONArray("positions");
-//				if (jsonArray.length() > 0) {
-//					JSONObject jsonObj = (JSONObject) jsonArray.get(0);
-//					if (jsonObj.getString("event").equals(mEvent))
-//						return true;
-//				}
                 SendDataHThread thread = new SendDataHThread("IsEvent");
                 thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
                 thread.setEvent(mEvent);
                 thread.setUrl(C.URL_CLIENTS_EVENT + "&event=" + thread.getEvent());
                 thread.start();
-
-                while (thread.isAlive()) {
-                };
-
+                try {
+                thread.sleep(10000);
+                    }
+                 catch (Exception e){
+                    }
                 if (thread.getFinish_Status().equals("OK"))
                     return true;
 

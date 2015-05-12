@@ -63,11 +63,13 @@ public class GetSailorsTask extends AsyncTask<String, Integer, Map<String, LatLn
                         Date time=new Date(Long.parseLong(jsonObj.getString("time"))*1000L);
                         Date tomorrow = new Date(time.getTime( ) + (1000 * 60 * 60 * 24));
 						String sailorFullName = jsonObj.getString("info");
-                        if ((!sailorFullName.equals((fullUserName)) && tomorrow.after(new Date()))) {
+                        String evet2 = jsonObj.getString("event");
+                        if (evet2.equals(event) && !sailorFullName.equals((fullUserName)) && (tomorrow.after(new Date()))) {
                             String lat = jsonObj.getString("lat");
                             String lng = jsonObj.getString("lon");
                             if (Double.parseDouble(lat) == 0 || Double.parseDouble(lng) == 0) {
                                 continue;
+
                             }
                             String sailorName = sailorFullName.split("_")[0].substring(6);
                             sailorsLatLng.put(sailorName, new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)));
