@@ -139,7 +139,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50" />
+        android:layout_weight="59.26" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -173,70 +173,6 @@
             android:enabled="false"
             android:text="@string/buoy_number_3" />
 
-        <Button
-            android:id="@+id/bBuoy4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:enabled="false"
-            android:text="@string/buoy_number_4" />
-
-        <Button
-            android:id="@+id/bBuoy5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:enabled="false"
-            android:text="@string/buoy_number_5" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="100" >
-
-        <Button
-            android:id="@+id/bBuoy6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:enabled="false"
-            android:text="@string/buoy_number_6" />
-
-        <Button
-            android:id="@+id/bBuoy7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:enabled="false"
-            android:text="@string/buoy_number_7" />
-
-        <Button
-            android:id="@+id/bBuoy8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:enabled="false"
-            android:text="@string/buoy_number_8" />
-
-        <Button
-            android:id="@+id/bBuoy9"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:enabled="false"
-            android:text="@string/buoy_number_9" />
-
-        <Button
-            android:id="@+id/bBuoy10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:enabled="false"
-            android:text="@string/buoy_number_10" />
     </LinearLayout>
 
 </LinearLayout>

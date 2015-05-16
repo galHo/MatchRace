@@ -22,6 +22,7 @@ public class SendDataHThread extends HandlerThread {
     private String name, fullUserName, password, user;
     private URL url;
     private String Finish_Status = "OK";
+    private boolean ServerRespose = false;
 
     public SendDataHThread(String name) {
         super(name);
@@ -47,6 +48,7 @@ public class SendDataHThread extends HandlerThread {
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(in));
                 String result = br.readLine();
+                ServerRespose=true;
                 if (!result.startsWith("OK")) { // Something is wrong.
                     Log.i(name, "Not OK!");
                     Finish_Status = result;
@@ -66,9 +68,14 @@ public class SendDataHThread extends HandlerThread {
             Log.i(name, "IOException");
         } finally {
             urlConnection.disconnect();
+
         }
     }
 
+
+    public boolean ServerRespondig(){
+        return ServerRespose;
+    }
 
     // Getters and Setters.
 

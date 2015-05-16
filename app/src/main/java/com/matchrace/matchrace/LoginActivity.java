@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.app.AlertDialog;
 import com.matchrace.matchrace.classes.C;
 import com.matchrace.matchrace.classes.SendDataHThread;
 import com.matchrace.matchrace.modules.JsonReader;
@@ -14,6 +14,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -42,10 +43,11 @@ public class LoginActivity extends Activity {
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
 	private UserLoginTask mAuthTask = null;
-
+    private static final long time=20000;
 	// Indicates requested login.
 	private boolean adminRequest = false;
 	private boolean registerRequest = false;
+    private boolean server;
 
 	// SharedPreferences used for loading the latest user.
 	private SharedPreferences sp;
@@ -286,34 +288,25 @@ public class LoginActivity extends Activity {
             String name = "UserLoginTask";
 
                 // Gets the user data from DB and checks if the user's data match.
-                //  JSONObject json = JsonReader.readJsonFromUrl(C.URL_CLIENTS_EVENT + "&Event=" + mEvent);
                 SendDataHThread thread = new SendDataHThread("IsEvent");
                 thread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
                 thread.setEvent(mEvent);
                 thread.setUrl(C.URL_CLIENTS_EVENT + "&event=" + thread.getEvent());
                 thread.start();
                 try {
-                thread.sleep(10000);
+                thread.join(time);
                     }
                  catch (Exception e){
                     }
-                if (thread.getFinish_Status().equals("OK"))
+            server=thread.ServerRespondig();
+                if (!server)
+                    return false;
+                if (thread.getFinish_Status().equals("OK") )
                     return true;
-
-//            }
-//			catch (JSONException e) {
-//				Log.i(name, "JSONException");
-//				return false;
-//			}
-//			catch (IOException e) {
-//				Log.i(name, "IOException, Ensure Mobile Data is NOT off");
-//				return false;
-//			}
-
                 return false;
-
-
         }
+
+
 		@Override
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
@@ -326,6 +319,7 @@ public class LoginActivity extends Activity {
                 if (adminRequest) {
                     adminRequest = false;
                     AdminActivity=true;
+                    server=true;
                     NoError=true;
                     intent = new Intent(LoginActivity.this, AdminActivity.class);
                 } else if (registerRequest) {
@@ -338,15 +332,21 @@ public class LoginActivity extends Activity {
                     thread.setUser(mUser);
                     thread.setUrl(C.URL_USER_TABLE + "&username=" + thread.getUser() + "&pass=" + thread.getPassword());
                     thread.start();
+                    try {
+                        thread.join(time);
+                    }
+                    catch(Exception e){
 
-                        while (thread.isAlive()){};
-
+                    }
+                    server=thread.ServerRespondig();
                     Error = thread.getFinish_Status();
-                    if (Error.equals("OK")) {
+
+                    if (Error.equals("OK") && server) {
                         NoError = true;
                         intent = new Intent(LoginActivity.this, MenuActivity.class);
 
                     }
+
                     //intent = new Intent(LoginActivity.this, MenuActivity.class);
                 } else {
                     SendDataHThread thread = new SendDataHThread("login");
@@ -355,15 +355,21 @@ public class LoginActivity extends Activity {
                     thread.setUser(mUser);
                     thread.setUrl(C.URL_CLIENTS_LOGIN + "&username=" + thread.getUser() + "&pass=" + thread.getPassword());
                     thread.start();
-                        while (thread.isAlive()){};
+                    try {
+                        thread.join(time);
+                    }
+                    catch(Exception e){
+
+                    }
+                    server=thread.ServerRespondig();
 
                     Error = thread.getFinish_Status();
-                    if (Error.equals("OK")) {
+                    if (Error.equals("OK") && server) {
                         NoError = true;
                         intent = new Intent(LoginActivity.this, MenuActivity.class);
                     }
                 }
-                if (NoError) {
+                if (NoError && server) {
 
                     if (!mUser.equals("Sailoradmin") && !mUser.equals("SailorAdmin")) {
                         // Updates the SharedPreferences.
@@ -381,6 +387,8 @@ public class LoginActivity extends Activity {
                     finish();
                 }
                 else{
+                    if (!server)
+                        etEvent.setError(getString(R.string.error_server));
                     if (Error.equals("That user does not exist"))
                         etUser.setError(getString(R.string.error_invalid_user));
                     if (Error.equals("Incorrect password"))
@@ -401,11 +409,15 @@ public class LoginActivity extends Activity {
                 }
             }
 			else {
-				//etPass.setError(getString(R.string.error_incorrect_pass_event));
-				etEvent.setError(getString(R.string.error_invalid_event));
-				etEvent.requestFocus();
+                if (!server)
+                    etEvent.setError(getString(R.string.error_server));
+                else {
+                    etEvent.setError(getString(R.string.error_invalid_event));
+                    etEvent.requestFocus();
+                }
 			}
 		}
+
 
 		@Override
 		protected void onCancelled() {

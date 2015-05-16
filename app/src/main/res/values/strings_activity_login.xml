@@ -20,5 +20,6 @@
     <string name="error_empty">one of the Fields is empty</string>
     <string name="error_pass">Worng Password</string>
     <string name="error_user">That user does not exist</string>
+    <string name="error_server">Server not Responding</string>
 
 </resources>
