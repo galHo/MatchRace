@@ -15,7 +15,7 @@ public class C {
 	// Map constants.
 	public static final float RADIUS_BUOY = 40f;
 	public static final float ZOOM_LEVEL = 17.0f;
-	public static final int MAX_BUOYS = 10;
+	public static final int MAX_BUOYS = 3;
 
 	// Users constants.
 	public static final String SAILOR_PREFIX = "Sailor";
