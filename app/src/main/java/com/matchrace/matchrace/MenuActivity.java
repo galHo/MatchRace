@@ -87,7 +87,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 
 			// AsyncTask for saving the KML file on SD memory (with time stamp).
 			SaveKmlTask saveKml1 = new SaveKmlTask(this, "SaveKmlTask", fullUserName, 1);
-			saveKml1.execute(C.URL_HISTORY_TABLE, C.URL_CLIENTS_TABLE);
+			saveKml1.execute(C.URL_HISTORY_TABLE+"&event="+event, C.URL_CLIENTS_TABLE+"&event="+event);
 			break;
 		case R.id.bKml2:
 			bKml2.setEnabled(false);
@@ -95,7 +95,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 
 			// AsyncTask for saving the KML file on SD memory (only path).
 			SaveKmlTask saveKml2 = new SaveKmlTask(this, "SaveKmlTask", fullUserName, 2);
-			saveKml2.execute(C.URL_HISTORY_TABLE, C.URL_CLIENTS_TABLE);
+			saveKml2.execute(C.URL_HISTORY_TABLE+"&event="+event, C.URL_CLIENTS_TABLE+"&event="+event);
 			break;
 		case R.id.bLogout:
 			// Updates the SharedPreferences.
