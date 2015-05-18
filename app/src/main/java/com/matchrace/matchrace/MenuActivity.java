@@ -107,6 +107,7 @@ public class MenuActivity extends Activity implements OnClickListener {
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 			finish();
+
 			break;
 		case R.id.bExit:
 			finish();
